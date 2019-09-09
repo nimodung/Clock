@@ -16,8 +16,6 @@
 #define Keypad_PIN_PORT PORTD
 #define Keypad_PIN PIND
 
-void Keypad_init(void);
-char Keyscan(void);
 char Keyscan_sub(void);
 void clock_Keypad_init(void);
 
