@@ -2,7 +2,7 @@
  * Timer.c
  *
  * Created: 2019-04-10 오전 11:04:02
- *  Author: user
+ *  Author: Kim Hee Ram
  */ 
 
 #include <avr/io.h>
@@ -229,26 +229,6 @@ ISR(TIMER0_COMPA_vect)						//interrupt 걸리면 실행하는 내용 //Interrup
 	
 } 
 
-int Timer_main(void)
-{
-	
-	while(1)
-	{ 
-		
-	}
-	
-	return 0;
-}
-
-/* TIMSK0 – Timer/Counter Interrupt Mask Register
-	어떤 interrupt 걸리게 할건지 정하는
-	비교 매치 b, 비교 매치 a, overflow
-*/
-/* TIFR0 – Timer/Counter 0 Interrupt Flag Register
-	interrupt 발생하면 flag 1
-	자동으로 / 상태 register
-*/
-
 void Timer0_init(void)
 {
 	//타이머 초기화
@@ -260,31 +240,6 @@ void Timer0_init(void)
 	return;
 }
 
-void Timer0_HC_SR04_init(void)
-{
-	TCCR0A |= 1 << WGM01;					//CTC 모드
-	TCCR0B |= (1 << CS02) | (1 << CS00);	//1024분주
-	OCR0A = 255;							//
-	
-	return;
-}
-
-void Timer0_init_CTC_outA(void) //A 출력을 쓰기위한 초기화 함수
-{
-	DDRD |= 1 << PORTD6;
-	TCCR0A |= 1<< WGM01 | 1 <<COM0A0;
-	TCCR0B |= 1 <<  CS00 | 1 <<CS01;
-	
-	OCR0A = 30; //4000Hz
-	//OCR0A = 63; // 2000Hz
-	//OCR0A = 124;							//(250 / 2) - 1 //한 주기를 1msec
-	//OCR0A = 249;							//한 주기 2msec //500Hz
-	//250Hz를 만들고싶다면? => OCR0A를 늘리면 오버플로우(8bit) => 분주를 늘린다
-	//CS0x (분주)랑 OCR값을 이용해서 주기, 주파수 조정
-	TIMSK0 |= 1 << OCIE0A;                  //0b00000010; //어떤 interrupt 걸리게 할건지 정하는	// OC0A 비교 매치 인터럽트 활성화
-	
-	return;
-}
 
 void Timer1_init_CTC_outA(void) //A 출력을 쓰기위한 초기화 함수
 {
