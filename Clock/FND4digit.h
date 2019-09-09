@@ -2,7 +2,7 @@
  * FND4digit.h
  *
  * Created: 2019-04-05 오후 2:52:22
- *  Author: user
+ *  Author: Kim Hee Ram
  */ 
 
 
@@ -33,13 +33,10 @@
 #define SER PORTB3
 
 void FND4digit_main();
-void FND4digit_init(void);
-void FND4digit_test(void);
-void FND_update_value(int number);
 void FND_update_time(int msec, char sec);
 void FND_clock(char sec, char min);
 void FND4digit_init_shiftR(void);
 void FND_shift_out(char data);
-void FND4digit_shiftR_test(void);
+
 
 #endif /* FND4DIGIT_H_ */
